@@ -1,0 +1,47 @@
+---
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+const testimonials = [
+  {
+    name: "John Smith",
+    role: "BMW Owner",
+    content: "The attention to detail was incredible. My car looks better than when I first bought it!",
+    image: "/images/testimonials/john.jpg"
+  },
+  {
+    name: "Sarah Johnson",
+    role: "Tesla Owner",
+    content: "Professional, punctual, and perfect results. I couldn't be happier with the service.",
+    image: "/images/testimonials/sarah.jpg"
+  },
+  {
+    name: "Mike Brown",
+    role: "Porsche Owner",
+    content: "These guys are true professionals. The ceramic coating they applied is still perfect after a year.",
+    image: "/images/testimonials/mike.jpg"
+  }
+];
+---
+
+<section class="py-20 bg-gray-dark">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => (
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
+            <div>
+              <h3 class="font-semibold">{testimonial.name}</h3>
+              <p class="text-gray-600 text-sm">{testimonial.role}</p>
+            </div>
+          </div>
+          <p class="text-gray-700">{testimonial.content}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

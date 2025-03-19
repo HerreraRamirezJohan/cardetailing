@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Benefits from '../components/Benefits.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CallToAction from '../components/CallToAction.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "AutoDetail Pro",
+  "image": "https://example.com/photos/1x1/photo.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Detail Street",
+    "addressLocality": "Anytown",
+    "addressRegion": "ST",
+    "postalCode": "12345",
+    "addressCountry": "US"
+  },
+  "priceRange": "$$",
+  "telephone": "+1-555-123-4567",
+  "url": "https://www.autodetailpro.com"
+};
+---
+
+<Layout 
+  title="AutoDetail Pro - Professional Auto Detailing Services"
+  description="Transform your vehicle with our premium auto detailing services. Expert care, exceptional results, and attention to detail that makes your car look showroom new."
+>
+  <Hero />
+  <Benefits />
+  <Testimonials />
+  <CallToAction />
+</Layout>

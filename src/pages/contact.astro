@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "AutoDetail Pro",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 DIconetail Street",
+      "addressLocality": "San Francisco",
+      "addressRegion": "CA",
+      "postalCode": "94105",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "37.7749",
+      "longitude": "-122.4194"
+    },
+    "url": "https://autodetailpro.com",
+    "telephone": "+1-555-123-4567",
+    "sameAs": [
+      "https://facebook.com/autodetailpro",
+      "https://instagram.com/autodetailpro",
+      "https://twitter.com/autodetailpro"
+    ]
+  }
+};
+
+const socialMedia = [
+  {
+    name: 'Facebook',
+    url: 'https://facebook.com/autodetailpro',
+    icon: 'mdi:facebook'
+  },
+  {
+    name: 'Instagram',
+    url: 'https://instagram.com/autodetailpro',
+    icon: 'mdi:instagram'
+  },
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com/autodetailpro',
+    icon: 'mdi:twitter'
+  }
+];
+---
+
+<Layout 
+  title="Contact AutoDetail Pro | Book Your Detailing Service"
+  description="Contact us to book your auto detailing service in San Francisco. Professional car care services with exceptional results."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <div class="py-20">
+    <div class="container mx-auto px-4 text-bone">
+      <h1 class="text-4xl font-bold text-center mb-12">Contact Us</h1>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        <div>
+          <h2 class="text-2xl font-semibold mb-6">Find Us</h2>
+          <div class="aspect-w-16 aspect-h-9 mb-6">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.835434509546!2d-122.4194152846808!3d37.774929279759634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064df1a743b%3A0x9e8a1758f02e9de6!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sus!4v1618253450928!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="rounded-lg shadow-lg"
+            ></iframe>
+          </div>
+
+          <div class="space-y-4 text-primary">
+            <p>123 Detail Street</p>
+            <p>San Francisco, CA 94105</p>
+            <p>Phone: (555) 123-4567</p>
+            <p>Email: info@autodetailpro.com</p>
+          </div>
+
+          <div class="mt-8">
+            <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+            <div class="flex gap-4">
+              {socialMedia.map(social => (
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-primary hover:text-primary transition-colors"
+                >
+                  <span class="sr-only">{social.name}</span>
+                  <Icon name={social.icon} class="w-6 h-6" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div id="book" class="bg-primary-dark p-5">
+          <h2 class="text-2xl font-semibold mb-6">Book a Service</h2>
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="year" class="block text-sm font-medium text-gray mb-2">Vehicle Year</label>
+                <input
+                  type="number"
+                  id="year"
+                  name="year"
+                  min="1900"
+                  max="2025"
+                  required
+                  class="w-full px-4 py-2 rounded-lg border border-gray focus:border-primary focus:ring-2 focus:ring-primary-light"
+                />
+              </div>
+              
+              <div>
+                <label for="make" class="block text-sm font-medium text-gray mb-2">Vehicle Make</label>
+                <input
+                  type="text"
+                  id="make"
+                  name="make"
+                  required
+                  class="w-full px-4 py-2 rounded-lg border border-gray focus:border-primary focus:ring-2 focus:ring-primary-light"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="model" class="block text-sm font-medium text-gray mb-2">Vehicle Model</label>
+              <input
+                type="text"
+                id="model"
+                name="model"
+                required
+                class="w-full px-4 py-2 rounded-lg border border-gray focus:border-primary focus:ring-2 focus:ring-primary-light"
+              />
+            </div>
+
+            <div>
+              <label for="additional" class="block text-sm font-medium text-gray mb-2">Additional Information</label>
+              <textarea
+                id="additional"
+                name="additional"
+                rows="4"
+                class="w-full px-4 py-2 rounded-lg border border-gray focus:border-primary focus:ring-2 focus:ring-primary-light"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full px-6 py-3 bg-primary text-bone rounded-lg hover:bg-primary-dark transition-colors font-semibold"
+            >
+              Submit Booking Request
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

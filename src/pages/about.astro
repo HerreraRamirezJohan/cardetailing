@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const team = [
+  {
+    name: 'John Doe',
+    position: 'Master Detailer',
+    experience: 12,
+    photo: '/images/team/john.jpg',
+    description: 'Certified detailer with expertise in paint correction and ceramic coatings.'
+  },
+  {
+    name: 'Jane Smith',
+    position: 'Interior Specialist',
+    experience: 8,
+    photo: '/images/team/jane.jpg',
+    description: 'Expert in leather restoration and interior detailing techniques.'
+  },
+  {
+    name: 'Mike Johnson',
+    position: 'Ceramic Coating Specialist',
+    experience: 10,
+    photo: '/images/team/mike.jpg',
+    description: 'Specialized in paint protection and ceramic coating applications.'
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "AutoDetail Pro",
+    "description": "Professional auto detailing services in San Francisco",
+    "employee": team.map(member => ({
+      "@type": "Person",
+      "name": member.name,
+      "jobTitle": member.position
+    }))
+  }
+};
+---
+
+<Layout 
+  title="About AutoDetail Pro | Professional Car Detailing Team"
+  description="Meet our team of experienced auto detailing professionals in San Francisco. Learn about our passion for perfection and commitment to quality."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <div class="py-20">
+    <div class="container mx-auto px-4 text-bone">
+      <h1 class="text-4xl font-bold text-center mb-12">About Us</h1>
+      
+      <div class="max-w-3xl mx-auto mb-20">
+        <p class="text-lg mb-6">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p class="text-lg">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-bold text-center mb-12">Our Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {team.map(member => (
+          <div class="bg-background rounded-lg overflow-hidden shadow-lg p-6">
+            <img 
+              src={member.photo} 
+              alt={member.name}
+              class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+            />
+            <h3 class="text-xl font-semibold text-center mb-2">{member.name}</h3>
+            <p class="text-gray text-center mb-2">{member.position}</p>
+            <p class="text-primary text-center mb-4">{member.experience} Years Experience</p>
+            <p class="text-gray text-center">{member.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
